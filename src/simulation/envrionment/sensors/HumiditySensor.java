@@ -1,21 +1,24 @@
 package simulation.envrionment.sensors;
 
+import java.util.concurrent.ConcurrentHashMap;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class HumiditySensor extends Sensor {
-
-	public HumiditySensor() {
-		super();
-	}
-
-	public HumiditySensor(String type, float min, float max, float value) {
-		super(type, min, max, value);
-	}
+	HumiditySensorResults humiditySensorResults;
 
 	@Override
-	public void simulateAction() {
-		float low=max+10;
-		float hiegh=min-10;
-		float res = (float) (Math.random() * (hiegh - low)) + low;
-		this.setValue(res);
+	public void run() {
+		System.out.println("Hum");
+
 	}
 
+	public HumiditySensor(int timeInterval, ConcurrentHashMap<String, SensorResults> map,
+			HumiditySensorResults humiditySensorResults) {
+		super(timeInterval, map);
+		this.humiditySensorResults = humiditySensorResults;
+	}
 }

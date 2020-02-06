@@ -4,15 +4,59 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import simulation.envrionment.sensors.LightSensor;
+import simulation.envrionment.sensors.Location;
 import simulation.envrionment.sensors.Sensor;
 
 public class Environment {
-	Map<Integer, HashMap<String, Sensor>> environment;
+	Map<Integer,Location> environment;
 
 	public Environment() {
-		environment = new HashMap<Integer, HashMap<String, Sensor>>();
+		environment = new HashMap<Integer, Location>();
 	}
-
+	
+	public void addLocation(int point) {
+		Location loc = new Location();
+		environment.putIfAbsent(point,loc);
+	}
+	
+	public void activateLightSensor(int point ,int timeInterval,float radiometry, float luminous, float minRadiometry, float minLuminous,
+			float maxRadiometry, float maxLuminous)  {
+		Location loc = environment.get(point);
+		loc.activateLightSensor(timeInterval ,radiometry,luminous,minRadiometry,minLuminous,
+				maxRadiometry,maxLuminous);
+	}
+	
+	public void activateHumiditySensor(int point , int value, int timeInterval , int min , int max) {
+		Location loc = environment.get(point);
+		loc.activateHumiditySensor(value, timeInterval, min, max);
+	}
+	
+	public void activateTempSensor(int point , int value, int timeInterval , int min , int max) {
+		Location loc = environment.get(point);
+		loc.activateTempSensor(value, timeInterval, min, max);
+	}
+	public void changeTimeInterval(int point , String type , int time) {
+		Location loc = environment.get(point);
+		switch (type){
+			 case "temp": 
+				loc.getTempSensor().setTimeInterval(time);
+				break;
+		}
+	}
+	
+	
+	public static void main(String[] args) throws InterruptedException {
+		Environment e = new Environment();
+		e.addLocation(0);
+		e.activateTempSensor(0, 100, 10,3, 5);
+		e.activateLightSensor(0,4,100,100,20,20,50,50);
+		//Thread.sleep(10);
+		//System.out.println("changin");
+		//e.changeTimeInterval(0, "temp", 10);
+	}
+	
+	
+/*
 	public void addSensorsToLocation(int point) {
 		Sensor light = new LightSensor("Light", 0, 0, 0);
 		Sensor temp = new LightSensor("Temp", 0, 0, 0);
@@ -117,6 +161,8 @@ public class Environment {
 			}
 		}
 
-	}
+	}/**/
+	
+	
 
 }
