@@ -15,14 +15,11 @@ import lombok.Setter;
 public abstract class Sensor extends Thread {
 	protected int timeInterval;
 	ConcurrentHashMap<String, SensorResults> map;
-    
-  
+    private String messageFormat;    
 	private void log(String s) {
 		Logger logger = Logger.getLogger("MyLog");
 		FileHandler fh;
-       
 		try {
-
 			// This block configure the logger with handler and formatter
 			fh = new FileHandler("./text");
 			logger.addHandler(fh);

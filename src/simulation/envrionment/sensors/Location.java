@@ -63,4 +63,28 @@ public class Location {
 		this.lightSensor.adjust(radiometry, luminous);
 	}
 
+	public void adjustSensorRange(LightSensor s) {
+		this.lightSensor.adjustRange(s);
+	}
+
+	public void adjustSensorRange(TempSensor s) {
+		this.tempSensor.adjustRange(s);
+		
+	}
+
+	public void changeTimeInterval(LightSensor s, int time) {
+		this.lightSensor.setTimeInterval(time);
+	}
+
+	public void changeTimeInterval(TempSensor s, int time) {
+		this.tempSensor.setTimeInterval(time);
+	}
+
+	public void changemessageFormat(LightSensor s) {
+		this.lightSensor.setMessageFormat(s.getMessageFormat());
+	}
+	public void changemessageFormat(TempSensor s) {
+		this.tempSensor.setMessageFormat(s.getMessageFormat());
+	}
+
 }

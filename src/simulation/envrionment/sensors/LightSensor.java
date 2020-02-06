@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class LightSensor extends Sensor {
 	private LigthSensorMeasurements ligthSensorMeasurements;
-
+    
 	@Override
 	public void run() {
 		while (true) {
@@ -41,6 +41,11 @@ public class LightSensor extends Sensor {
 	public void adjust(float radiometry, float luminous) {
 		this.ligthSensorMeasurements.setRadiometry(radiometry);
 		this.ligthSensorMeasurements.setLuminous(luminous);
+	}
+
+	public void adjustRange(LightSensor s) {
+		this.ligthSensorMeasurements.setLuminous(s.ligthSensorMeasurements.getMaxLuminous());
+		this.ligthSensorMeasurements.setMaxRadiometry(s.ligthSensorMeasurements.getMaxRadiometry());
 	}
 
 }

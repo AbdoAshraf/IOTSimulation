@@ -56,4 +56,9 @@ public class TempSensor extends Sensor {
 		}
 	}
 
+	public void adjustRange(TempSensor s) {
+		this.max=s.max;
+		this.min=s.min;
+	}
+
 }

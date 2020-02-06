@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import simulation.envrionment.sensors.LightSensor;
 import simulation.envrionment.sensors.Location;
 import simulation.envrionment.sensors.Sensor;
+import simulation.envrionment.sensors.TempSensor;
 
 public class Environment {
 	Map<Integer,Location> environment;
@@ -35,16 +36,32 @@ public class Environment {
 		Location loc = environment.get(point);
 		loc.activateTempSensor(value, timeInterval, min, max);
 	}
-	public void changeTimeInterval(int point , String type , int time) {
+	
+	public void adjustSensorRange(int point,LightSensor S) {
 		Location loc = environment.get(point);
-		switch (type){
-			 case "temp": 
-				loc.getTempSensor().setTimeInterval(time);
-				break;
-		}
+		loc.adjustSensorRange(S);
 	}
-	
-	
+	public void adjustSensorRange(int point,TempSensor S) {
+		Location loc = environment.get(point);
+		loc.adjustSensorRange(S);
+	}
+	public void changeTimeInterval(int point ,LightSensor s, int time) {
+		Location loc = environment.get(point);
+		loc.changeTimeInterval(s,time);
+	}
+	public void changeTimeInterval(int point ,TempSensor s, int time) {
+		Location loc = environment.get(point);
+		loc.changeTimeInterval(s,time);
+	}
+	public void changemessageFormat(int point, LightSensor S) {
+		Location loc = environment.get(point);
+        loc.changemessageFormat(S);
+	}
+	public void changemessageFormat(int point, TempSensor S) {
+		Location loc = environment.get(point);
+        loc.changemessageFormat(S);
+	}
+		
 	public static void main(String[] args) throws InterruptedException {
 		Environment e = new Environment();
 		e.addLocation(0);

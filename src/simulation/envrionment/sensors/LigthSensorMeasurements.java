@@ -1,17 +1,19 @@
 package simulation.envrionment.sensors;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class LigthSensorMeasurements {
 	private float radiometry;
 	private float luminous;
 	private float minRadiometry;
-	float minLuminous;
-	float maxRadiometry;
-	float maxLuminous;
+	private float minLuminous;
+	private float maxRadiometry;
+	private float maxLuminous;
 	
 	
 	public LigthSensorMeasurements(float radiometry, float luminous, float minRadiometry, float minLuminous,
