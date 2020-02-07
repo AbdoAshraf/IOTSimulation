@@ -48,7 +48,7 @@ public class TempSensor extends Sensor {
 		while (true) {
 			this.performReading();
 			try {
-				Thread.sleep(timeInterval);
+				Thread.sleep(timeInterval * 1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -27,7 +27,6 @@ public class LigthSensorMeasurements {
 		this.maxLuminous = maxLuminous;
 	}
 
-
 	public SensorResults measurements() {
 		if (this.radiometry > this.maxRadiometry || this.luminous > this.maxRadiometry)
 			return SensorResults.HIGH;

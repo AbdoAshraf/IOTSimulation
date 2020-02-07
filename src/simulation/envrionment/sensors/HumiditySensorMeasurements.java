@@ -1,14 +1,14 @@
 package simulation.envrionment.sensors;
 
-public class HumiditySensorResults {
+public class HumiditySensorMeasurements {
 	float absHumidity;
 	float relHumidity;
 	float minAbsHumidity;
 	float minRelHumidity;
 	float maxAbsHumidity;
 	float maxRelHumidity;
-
-	public HumiditySensorResults(float radiometry, float luminous, float minRadiometry, float minLuminous,
+	
+	public HumiditySensorMeasurements(float radiometry, float luminous, float minRadiometry, float minLuminous,
 			float maxRadiometry, float maxLuminous) {
 		super();
 		this.absHumidity = radiometry;
@@ -19,7 +19,7 @@ public class HumiditySensorResults {
 		this.maxRelHumidity = maxLuminous;
 	}
 
-	public SensorResults measurements(boolean temp, boolean humidity) {
+	public SensorResults measurements() {
 		if (this.absHumidity > this.maxAbsHumidity || this.relHumidity > this.maxAbsHumidity)
 			return SensorResults.HIGH;
 		if (this.absHumidity < this.minAbsHumidity || this.relHumidity < this.minRelHumidity)

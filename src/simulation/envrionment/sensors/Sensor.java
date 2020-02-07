@@ -74,7 +74,6 @@ public abstract class Sensor extends Thread {
 			message.append(S);
 		}
 		this.log(message.toString());
-		//System.out.println(message);
 	}
 
 

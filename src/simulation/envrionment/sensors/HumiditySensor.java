@@ -8,20 +8,37 @@ import lombok.Setter;
 @Getter
 @Setter
 public class HumiditySensor extends Sensor {
-	HumiditySensorResults humiditySensorResults;
+	HumiditySensorMeasurements humiditySensorResults;
 	@Override
 	public void run() {
-		System.out.println("Hum");
-
+		while (true) {
+			try {
+				Thread.sleep(timeInterval*1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public HumiditySensor(int timeInterval, ConcurrentHashMap<String, SensorResults> map,
-			HumiditySensorResults humiditySensorResults) {
+			HumiditySensorMeasurements humiditySensorResults) {
 		super(timeInterval, map);
 		this.humiditySensorResults = humiditySensorResults;
 	}
 
 	@Override
 	void performReading() {
+		//SensorResults light = this.humiditySensorResults.measurements();
+		SensorResults temp = map.get("Temp");
+		SensorResults hum = this.humiditySensorResults.measurements();
+		if (hum == SensorResults.HIGH && temp == SensorResults.HIGH) {
+			//System.out.println("abnormal temp");
+			this.creatMessage("abnormal hight Humidity");
+		}
+		if (hum == SensorResults.LOW) {
+			//System.out.println("abnormal Light");
+			this.creatMessage("abnormal low Humidity");
+		}
+		map.put("Light",hum);		
 	}
 }

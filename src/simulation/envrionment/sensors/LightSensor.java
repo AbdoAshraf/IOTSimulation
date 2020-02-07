@@ -17,7 +17,8 @@ public class LightSensor extends Sensor {
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(timeInterval);
+				this.performReading();
+				Thread.sleep(timeInterval*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -43,14 +44,13 @@ public class LightSensor extends Sensor {
 	@Override
 	void performReading() {
 		SensorResults light = this.ligthSensorMeasurements.measurements();
-		SensorResults temp = map.get("Temp");
-		if (light == SensorResults.HIGH && temp == SensorResults.HIGH) {
+		if (light == SensorResults.HIGH ) {
 			//System.out.println("abnormal temp");
-			this.creatMessage("abnormal Light");
+			this.creatMessage("abnormal hight Light");
 		}
 		if (light == SensorResults.HIGH) {
 			//System.out.println("abnormal Light");
-			this.creatMessage("abnormal Light");
+			this.creatMessage("abnormal low Light");
 
 		}
 		map.put("Light",light);		
