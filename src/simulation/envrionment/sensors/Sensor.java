@@ -16,13 +16,13 @@ import lombok.Setter;
 public abstract class Sensor extends Thread {
 	protected int timeInterval;
 	protected ConcurrentHashMap<String, SensorResults> map;
-    private String messageFormat;    
+    private String messageFormat;  
 	protected void log(String s) {
-		Logger logger = Logger.getLogger("MyLog");
 		FileHandler fh;
 		try {
 			// This block configure the logger with handler and formatter
-			fh = new FileHandler("./text");
+		    Logger logger = Logger.getLogger("MyLog");
+			fh = new FileHandler("./text.log", true);  
 			logger.addHandler(fh);
 			logger.setUseParentHandlers(false);
 			SimpleFormatter formatter = new SimpleFormatter();
