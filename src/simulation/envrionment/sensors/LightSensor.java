@@ -11,23 +11,11 @@ public class LightSensor extends Sensor {
 	public LightSensor() {
 		super();
 	}
-
 	private LigthSensorMeasurements ligthSensorMeasurements;
     
 	@Override
 	public void run() {
 		while (true) {
-			this.log("light");
-			SensorResults light = this.ligthSensorMeasurements.measurements();
-			SensorResults temp = map.get("Temp");
-			if (light == SensorResults.HIGH && temp == SensorResults.HIGH) {
-				System.out.println("abnormal temp");
-			}
-			if (light == SensorResults.HIGH) {
-				System.out.println("abnormal Light");
-			}
-			
-			map.put("Light",light);
 			try {
 				Thread.sleep(timeInterval);
 			} catch (InterruptedException e) {
@@ -52,4 +40,19 @@ public class LightSensor extends Sensor {
 		this.ligthSensorMeasurements.setMaxRadiometry(s.ligthSensorMeasurements.getMaxRadiometry());
 	}
 
-}
+	@Override
+	void performReading() {
+		SensorResults light = this.ligthSensorMeasurements.measurements();
+		SensorResults temp = map.get("Temp");
+		if (light == SensorResults.HIGH && temp == SensorResults.HIGH) {
+			//System.out.println("abnormal temp");
+			this.creatMessage("abnormal Light");
+		}
+		if (light == SensorResults.HIGH) {
+			//System.out.println("abnormal Light");
+			this.creatMessage("abnormal Light");
+
+		}
+		map.put("Light",light);		
+	}
+}	

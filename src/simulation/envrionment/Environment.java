@@ -20,7 +20,8 @@ public class Environment {
 	}
 
 	public void addLocation(int point) {
-		Location loc = new Location();
+		String locName = "loc"+String.valueOf(point);
+		Location loc = new Location(locName);
 		environment.putIfAbsent(point, loc);
 	}
 	

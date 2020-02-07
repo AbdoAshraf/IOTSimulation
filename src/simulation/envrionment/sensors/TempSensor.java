@@ -46,17 +46,7 @@ public class TempSensor extends Sensor {
 	@Override
 	public void run() {
 		while (true) {
-			this.log("temp");
-			SensorResults temp = TempSensorMeasurement();
-			SensorResults light = map.get("Light");
-			if(light == SensorResults.HIGH && temp == SensorResults.HIGH) {
-				//System.out.println("abnormal temp");
-			}
-			if (temp == SensorResults.LOW)
-			//	System.out.println("abnormal temp");
-			
-			map.put("Temp",temp);
-            
+			this.performReading();
 			try {
 				Thread.sleep(timeInterval);
 			} catch (InterruptedException e) {
@@ -70,4 +60,17 @@ public class TempSensor extends Sensor {
 		this.min=s.min;
 	}
 
+
+	@Override 
+	void performReading() {
+		SensorResults temp = TempSensorMeasurement();
+		SensorResults light = map.get("Light");
+		if(light == SensorResults.HIGH && temp == SensorResults.HIGH) {
+			this.creatMessage("abnormal temp");
+		}
+		if (temp == SensorResults.LOW) {
+			this.creatMessage("abnormal temp");
+		}
+		map.put("Temp",temp);
+	}
 }

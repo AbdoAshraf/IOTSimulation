@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class HumiditySensor extends Sensor {
 	HumiditySensorResults humiditySensorResults;
-
 	@Override
 	public void run() {
 		System.out.println("Hum");
@@ -20,5 +19,9 @@ public class HumiditySensor extends Sensor {
 			HumiditySensorResults humiditySensorResults) {
 		super(timeInterval, map);
 		this.humiditySensorResults = humiditySensorResults;
+	}
+
+	@Override
+	void performReading() {
 	}
 }
