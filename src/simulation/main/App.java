@@ -3,6 +3,8 @@ package simulation.main;
 import java.util.Scanner;
 
 import simulation.envrionment.Environment;
+import simulation.envrionment.dto.HumiditySensorDTO;
+import simulation.envrionment.dto.HumiditySensorMeasurementsDTO;
 import simulation.envrionment.dto.LightSensorDTO;
 import simulation.envrionment.dto.LigthSensorMeasurementsDto;
 import simulation.envrionment.dto.TempSensorDTO;
@@ -40,7 +42,7 @@ public class App {
 				activationHandler();
 			else if (S.equals("E"))
 				break;
-			
+
 		}
 		SuperLoop();
 	}
@@ -55,14 +57,13 @@ public class App {
 					String[] arrSplit = S.split(" ");
 					int point = Integer.parseInt(arrSplit[0]);
 					String SensorType = arrSplit[1];
-					activateSensor(point,SensorType);
+					activateSensor(point, SensorType);
 					return;
 				} catch (Exception e) {
 					System.out.println("please enter correct value");
 				}
 			}
-		}
-		else if (m.equals("d")) {
+		} else if (m.equals("d")) {
 			while (true) {
 				try {
 					System.out.println("loc sensor");
@@ -70,14 +71,14 @@ public class App {
 					String[] arrSplit = S.split(" ");
 					int point = Integer.parseInt(arrSplit[0]);
 					String SensorType = arrSplit[1];
-					detivateSensor(point,SensorType);
+					detivateSensor(point, SensorType);
 					return;
 				} catch (Exception e) {
 					System.out.println("please enter correct value");
 				}
 			}
 		}
-			
+
 	}
 
 	private void detivateSensor(int point, String sensorType) {
@@ -88,6 +89,9 @@ public class App {
 		case "light":
 			this.environment.deactivateLightSensor(point);
 			break;
+		case "hum":
+			this.environment.deactivateHumiditySensor(point);
+			// this.environment.activateLigrtSensor(point);
 		default:
 			break;
 		}
@@ -108,8 +112,7 @@ public class App {
 	}
 
 	private void SuperLoop() {
-		
-		
+
 	}
 
 	private void sensorConfigHandler() {
@@ -121,16 +124,49 @@ public class App {
 		case "light":
 			initLightSensor();
 			break;
+		case "hum":
+			initHumiditySensor();
+			break;
 
 		default:
 			break;
 		}
 	}
 
+	private void initHumiditySensor() {
+		while (true) {
+			try {
+				System.out.println("absHumidity relHumidity minAbsHumidity" + "			inRelHumidity "
+						+ "			maxAbsHumidity  maxRelHumidity");
+				String S = sc.nextLine();
+				String[] arrSplit = S.split(" ");
+				int point = Integer.parseInt(arrSplit[0]);
+				float absHumidity = Float.parseFloat(arrSplit[1]);
+				float relHumidity = Float.parseFloat(arrSplit[2]);
+				int timeInterval = Integer.parseInt(arrSplit[3]);
+				float minAbsHumidity = Float.parseFloat(arrSplit[4]);
+				float minRelHumidity = Float.parseFloat(arrSplit[5]);
+				float maxAbsHumidity = Float.parseFloat(arrSplit[6]);
+				float maxRelHumidity = Float.parseFloat(arrSplit[7]);
+				HumiditySensorMeasurementsDTO m = new HumiditySensorMeasurementsDTO(absHumidity, relHumidity,
+						minAbsHumidity, minRelHumidity, maxAbsHumidity, maxRelHumidity);
+				HumiditySensorDTO humiditySensorDTO = new HumiditySensorDTO(timeInterval, m);
+				// LightSensorDTO l = new LightSensorDTO(timeInterval,m);
+				this.environment.initSensor(point,humiditySensorDTO);/**/
+				return;
+			} catch (Exception e) {
+				System.out.println("please enter correct value");
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 	private void initLightSensor() {
 		while (true) {
 			try {
-				System.out.println("point timeInterval radiometry, luminous minRadiometry minLuminous maxRadiometry maxLuminous");
+				System.out.println(
+						"point timeInterval radiometry, luminous minRadiometry minLuminous maxRadiometry maxLuminous");
 				String S = sc.nextLine();
 				String[] arrSplit = S.split(" ");
 				int point = Integer.parseInt(arrSplit[0]);
@@ -141,17 +177,17 @@ public class App {
 				float minLuminous = Float.parseFloat(arrSplit[5]);
 				float maxRadiometry = Float.parseFloat(arrSplit[6]);
 				float maxLuminous = Float.parseFloat(arrSplit[7]);
-				LigthSensorMeasurementsDto m = new LigthSensorMeasurementsDto(radiometry,luminous,
-						minRadiometry,minLuminous,maxRadiometry,maxLuminous);
-				LightSensorDTO l = new LightSensorDTO(timeInterval,m);
+				LigthSensorMeasurementsDto m = new LigthSensorMeasurementsDto(radiometry, luminous, minRadiometry,
+						minLuminous, maxRadiometry, maxLuminous);
+				LightSensorDTO l = new LightSensorDTO(timeInterval, m);
 				this.environment.initSensor(point, l);/**/
 				return;
 			} catch (Exception e) {
-				System.out.println("please enter correct value" );
+				System.out.println("please enter correct value");
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	private void initTempSensor() {
@@ -165,8 +201,8 @@ public class App {
 				int timeInterval = Integer.parseInt(arrSplit[2]);
 				float min = Float.parseFloat(arrSplit[3]);
 				float max = Float.parseFloat(arrSplit[4]);
-				TempSensorDTO temp = new TempSensorDTO(value,timeInterval,min,max);
-				this.environment.initSensor(point,temp);
+				TempSensorDTO temp = new TempSensorDTO(value, timeInterval, min, max);
+				this.environment.initSensor(point, temp);
 				return;
 			} catch (Exception e) {
 				e.printStackTrace();

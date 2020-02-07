@@ -7,10 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class TempSensorDTO {
-	//private int point;
-	private float value;
+public class HumiditySensorDTO {
 	private int timeInterval;
-	private float min;
-	private float max;
+	
+	HumiditySensorMeasurementsDTO HumiditiySensorMeasurementsdto;
 }

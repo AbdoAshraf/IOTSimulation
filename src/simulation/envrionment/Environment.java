@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import simulation.envrionment.dto.HumiditySensorDTO;
 import simulation.envrionment.dto.LightSensorDTO;
 import simulation.envrionment.dto.TempSensorDTO;
+import simulation.envrionment.sensors.HumiditySensor;
+import simulation.envrionment.sensors.HumiditySensorMeasurements;
 import simulation.envrionment.sensors.LightSensor;
 import simulation.envrionment.sensors.LigthSensorMeasurements;
 import simulation.envrionment.sensors.Location;
@@ -37,6 +40,12 @@ public class Environment {
 		// TempSensor s = loc.getTempSensor();
 		loc.initSensor(lightSensorDTO);
 	}
+	
+	public void initSensor(int point, HumiditySensorDTO humiditySensorDTO) {
+		Location loc = environment.get(point);
+		// TempSensor s = loc.getTempSensor();
+		loc.initSensor(humiditySensorDTO);
+	}
 
 	public void activateLigrtSensor(int point) {
 		Location loc = environment.get(point);
@@ -57,6 +66,11 @@ public class Environment {
 		Location loc = environment.get(point);
 		loc.deactivateTempSensor();
 	}
+	public void deactivateHumiditySensor(int point) {
+		Location loc = environment.get(point);
+		loc.deactivateHumiditySensor();
+	}
+	
 
 
 	public void changetempSensorRang(int point, float min, float max) {
@@ -77,6 +91,18 @@ public class Environment {
 		m.setMaxLuminous(maxLuminous);
 		m.setMaxRadiometry(maxRadiometry);
 	}
+	
+	public void changeHumiditytSensorRang(int point, float minAbsHumidity, 
+			float minRelHumidity, float maxAbsHumidity,
+			float maxRelHumidity) {
+		Location loc = environment.get(point);
+		HumiditySensor s = loc.getHumiditySensor();
+		HumiditySensorMeasurements m = s.getHumiditySensorResults();
+		m.setMinAbsHumidity(minAbsHumidity);
+		m.setMinRelHumidity(minRelHumidity);
+		m.setMaxAbsHumidity(maxAbsHumidity);
+		m.setMaxRelHumidity(maxRelHumidity);
+	}
 
 	public void changeLightSensorPeriod(int point, int timeInterval) {
 		Location loc = environment.get(point);
@@ -89,5 +115,8 @@ public class Environment {
 		TempSensor s = loc.getTempSensor();
 		s.setTimeInterval(timeInterval);
 	}
+
+	
+	
 
 }

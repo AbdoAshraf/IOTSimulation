@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 
 import lombok.Getter;
 import lombok.Setter;
+import simulation.envrionment.dto.HumiditySensorDTO;
 import simulation.envrionment.dto.LightSensorDTO;
 import simulation.envrionment.dto.TempSensorDTO;
 
@@ -70,6 +71,16 @@ public class Location {
 		name.append(this.name);
 		this.tempSensor.setName(name.toString());
 	}
+	
+	
+	public void initSensor(HumiditySensorDTO humiditySensorDTO) {
+		ModelMapper modelMapper = new ModelMapper();
+		this.humiditySensor= modelMapper.map(humiditySensorDTO, HumiditySensor.class);
+		this.humiditySensor.setMap(map);
+		StringBuilder name = new StringBuilder("humidity Sensor at loc");
+		name.append(this.name);
+		this.tempSensor.setName(name.toString());
+	}
 
 	@SuppressWarnings("deprecation")
 	public void deactivateLightSensor() {
@@ -85,7 +96,7 @@ public class Location {
 		try {
 			if (this.lightSensor.getState() == Thread.State.NEW)
 				this.lightSensor.start();
-			else if (this.lightSensor.getState() == Thread.State.WAITING)
+			else
 				this.lightSensor.resume();
 
 		} catch (Exception e) {
@@ -114,6 +125,27 @@ public class Location {
 		}
 	}
 
+	public void deactivateHumiditySensor() {
+		try {
+			this.humiditySensor.suspend();
+		} catch (Exception e) {
+			System.out.println("invalid operation " + e.getMessage());
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void activateHumiditySensor() {
+		try {
+			if (this.humiditySensor.getState() == Thread.State.NEW)
+				this.humiditySensor.start();
+			else
+				this.humiditySensor.resume();
+		} catch (Exception e) {
+			System.out.println("invalid operation " + e.getMessage());
+		}
+	}
+	
+	
 	/*
 	 * public void adjustSensor(Sensor S, int i) { S.setTimeInterval(i); }
 	 * 

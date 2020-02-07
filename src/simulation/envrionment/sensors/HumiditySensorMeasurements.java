@@ -1,5 +1,10 @@
 package simulation.envrionment.sensors;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class HumiditySensorMeasurements {
 	float absHumidity;
 	float relHumidity;
@@ -8,15 +13,16 @@ public class HumiditySensorMeasurements {
 	float maxAbsHumidity;
 	float maxRelHumidity;
 	
-	public HumiditySensorMeasurements(float radiometry, float luminous, float minRadiometry, float minLuminous,
-			float maxRadiometry, float maxLuminous) {
+	public HumiditySensorMeasurements(float absHumidity, float relHumidity, float minAbsHumidity, 
+			float minRelHumidity,
+			float maxAbsHumidity, float maxRelHumidity) {
 		super();
-		this.absHumidity = radiometry;
-		this.relHumidity = luminous;
-		this.minAbsHumidity = minRadiometry;
-		this.minRelHumidity = minLuminous;
-		this.maxAbsHumidity = maxRadiometry;
-		this.maxRelHumidity = maxLuminous;
+		this.absHumidity = absHumidity;
+		this.relHumidity = relHumidity;
+		this.minAbsHumidity = minAbsHumidity;
+		this.minRelHumidity = minRelHumidity;
+		this.maxAbsHumidity = maxAbsHumidity;
+		this.maxRelHumidity = maxRelHumidity;
 	}
 
 	public SensorResults measurements() {
