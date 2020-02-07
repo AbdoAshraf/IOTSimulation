@@ -14,7 +14,7 @@ public class LigthSensorMeasurements {
 	private float minLuminous;
 	private float maxRadiometry;
 	private float maxLuminous;
-	
+	 
 	
 	public LigthSensorMeasurements(float radiometry, float luminous, float minRadiometry, float minLuminous,
 			float maxRadiometry, float maxLuminous) {

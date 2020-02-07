@@ -2,8 +2,12 @@ package simulation.envrionment.sensors;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.modelmapper.ModelMapper;
+
 import lombok.Getter;
 import lombok.Setter;
+import simulation.envrionment.dto.LightSensorDTO;
+import simulation.envrionment.dto.TempSensorDTO;
 
 @Getter
 @Setter
@@ -11,9 +15,7 @@ public class Location {
 	private LightSensor lightSensor;
 	private HumiditySensor humiditySensor;
 	private TempSensor tempSensor;
-
 	ConcurrentHashMap<String, SensorResults> map;
-
 	public Location() {
 		super();
 		map = new ConcurrentHashMap<>();
@@ -21,22 +23,20 @@ public class Location {
 		map.put("Temp", SensorResults.Inactive);
 		map.put("Humidity", SensorResults.Inactive);
 	}
-
-	public void activateLightSensor(int timeInterval, float radiometry, float luminous, float minRadiometry,
+/*
+	public void initLightSensor(int timeInterval, float radiometry, float luminous, float minRadiometry,
 			float minLuminous, float maxRadiometry, float maxLuminous) {
-		if (this.lightSensor == null||this.lightSensor.getState() == Thread.State.TERMINATED) {
+		if (this.lightSensor == null) {
 			// this.lightSensor = new LightSensor(value,map,timeInterval,min,max);
 			LigthSensorMeasurements m = new LigthSensorMeasurements(radiometry, luminous, minRadiometry, minLuminous,
 					maxRadiometry, maxLuminous);
-
 			this.lightSensor = new LightSensor(timeInterval, map, m);
-			this.lightSensor.start();
 			return;
 		}
-		System.out.println("Already Activated");
+		//System.out.println("Already Activated");
 	}
 
-	public void activateHumiditySensor(float value, int timeInterval, int min, int max) {
+	public void initHumiditySensor(float value, int timeInterval, int min, int max) {
 		if (this.humiditySensor.getState() == Thread.State.TERMINATED || this.humiditySensor == null) {
 			// this.humiditySensor = new HumiditySensor(timeInterval, map, value, min, max);
 			return;
@@ -44,17 +44,79 @@ public class Location {
 		System.out.println("Already Activated");
 	}
 
-	public void activateTempSensor(float value, int timeInterval, int min, int max) {
-		if (this.tempSensor == null || this.tempSensor.getState() == Thread.State.TERMINATED) {
+	public void initTempSensor(float value, int timeInterval, float min, float max) {
+		if (this.tempSensor == null) {
 			this.tempSensor = new TempSensor(timeInterval, map, value, min, max);
-			tempSensor.start();
-			// (int timeInterval, ConcurrentHashMap<String, SensorResults> map, float value,
-			// int min, int max)
 			return;
 		}
 		System.out.println("Already Activated");
 	}
 
+	public void initLightSensor(LightSensorDTO lightSensroDTO) {
+		
+	}
+	
+	/**/
+	public void initSensor(TempSensorDTO tempSensor) {
+		ModelMapper modelMapper = new ModelMapper();
+		this.tempSensor= modelMapper.map(tempSensor, TempSensor.class);
+		this.tempSensor.setMap(map);
+		//this.tempSensor.start();
+	}
+
+	public void initSensor(LightSensorDTO lightSensorDTO) {
+		ModelMapper modelMapper = new ModelMapper();
+		this.lightSensor= modelMapper.map(lightSensorDTO, LightSensor.class);
+		this.lightSensor.setMap(map);
+		//this.lightSensor.start();
+	}
+	@SuppressWarnings("deprecation")
+	public void deactivateLightSensor() {
+		try {
+			this.lightSensor.suspend();
+		} catch(Exception e) {
+			System.out.println("invalid operation " + e.getMessage());
+		}
+	}
+	
+	
+	@SuppressWarnings("deprecation")
+	public void activateLightSensor() {
+		try {
+			if (this.lightSensor.getState() == Thread.State.NEW)
+			     this.lightSensor.start();
+			else if (this.lightSensor.getState() ==Thread.State.WAITING)
+			     this.lightSensor.resume();
+
+		} catch(Exception e) {
+			System.out.println("invalid operation " + e.getMessage());
+		}
+	}
+	
+	
+	
+	@SuppressWarnings("deprecation")
+	public void deactivateTempSensor() {
+		try {
+			this.tempSensor.suspend();
+		} catch(Exception e) {
+			System.out.println("invalid operation " + e.getMessage());
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void activateTemptSensor() {
+		try {
+			if (this.tempSensor.getState() == Thread.State.NEW)
+			     this.tempSensor.start();
+			else 
+			this.tempSensor.resume();
+		} catch(Exception e) {
+			System.out.println("invalid operation " + e.getMessage());
+		}
+	}
+	
+/*
 	public void adjustSensor(Sensor S, int i) {
 		S.setTimeInterval(i);
 	}
@@ -85,6 +147,6 @@ public class Location {
 	}
 	public void changemessageFormat(TempSensor s) {
 		this.tempSensor.setMessageFormat(s.getMessageFormat());
-	}
+	}/**/
 
 }

@@ -8,12 +8,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LightSensor extends Sensor {
+	public LightSensor() {
+		super();
+	}
+
 	private LigthSensorMeasurements ligthSensorMeasurements;
     
 	@Override
 	public void run() {
 		while (true) {
-			System.out.println("Ligt");
+			this.log("light");
 			SensorResults light = this.ligthSensorMeasurements.measurements();
 			SensorResults temp = map.get("Temp");
 			if (light == SensorResults.HIGH && temp == SensorResults.HIGH) {

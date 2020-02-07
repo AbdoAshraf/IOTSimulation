@@ -3,24 +3,33 @@ package simulation.envrionment.sensors;
 import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class TempSensor extends Sensor {
 	private float value;
-	private int min;
-	private int max;
+	private float min;
+	private float max;
 	
-	public TempSensor(int timeInterval, ConcurrentHashMap<String, SensorResults> map, float value, int min, int max) {
+	public TempSensor(int timeInterval, ConcurrentHashMap<String, SensorResults> map, float value, float min, float max) {
 		super(timeInterval, map);
 		this.value = value;
 		this.min = min;
 		this.max = max;
 	}
 	
+
+	public TempSensor() {
+		super();
+	}
+
+
 	private SensorResults TempSensorMeasurement() {
+		//System.out.println(this.timeInterval);
 		if(value > max ) {
+			//System.out.println("abnormal temp");
 			return SensorResults.HIGH;
 		}
 		if(value < min ) {
@@ -37,14 +46,14 @@ public class TempSensor extends Sensor {
 	@Override
 	public void run() {
 		while (true) {
-			System.out.println("Temp");
+			this.log("temp");
 			SensorResults temp = TempSensorMeasurement();
 			SensorResults light = map.get("Light");
 			if(light == SensorResults.HIGH && temp == SensorResults.HIGH) {
-				System.out.println("abnormal temp");
+				//System.out.println("abnormal temp");
 			}
 			if (temp == SensorResults.LOW)
-				System.out.println("abnormal temp");
+			//	System.out.println("abnormal temp");
 			
 			map.put("Temp",temp);
             

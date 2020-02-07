@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -14,9 +15,9 @@ import lombok.Setter;
 @Setter
 public abstract class Sensor extends Thread {
 	protected int timeInterval;
-	ConcurrentHashMap<String, SensorResults> map;
+	protected ConcurrentHashMap<String, SensorResults> map;
     private String messageFormat;    
-	private void log(String s) {
+	protected void log(String s) {
 		Logger logger = Logger.getLogger("MyLog");
 		FileHandler fh;
 		try {
@@ -47,7 +48,10 @@ public abstract class Sensor extends Thread {
 		this.timeInterval = timeInterval;
 		this.map = map;
 	}
-
-
+    
+    public Sensor() {
+    }
+    
+    
 
 }

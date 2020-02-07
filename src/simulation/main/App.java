@@ -1,10 +1,11 @@
 package simulation.main;
 
 import java.util.Scanner;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+
 import simulation.envrionment.Environment;
+import simulation.envrionment.dto.LightSensorDTO;
+import simulation.envrionment.dto.LigthSensorMeasurementsDto;
+import simulation.envrionment.dto.TempSensorDTO;
 
 public class App {
 
@@ -30,57 +31,154 @@ public class App {
 		while (true) {
 			String S = sc.nextLine();
 			if (S.equals("A"))
-				handleConfigSensor();
-			else if (S.equals("C"))
-				handleConfigRange();
-			else if (S.equals("P"))
-				P = getIntValue("pleas enter int");
+				addLocationHandler();
+			else if (S.equals("SA"))
+				sensorConfigHandler();
+			else if (S.equals("SD"))
+				sensorConfigHandler();
+			else if (S.equals("AD"))
+				activationHandler();
 			else if (S.equals("E"))
 				break;
+			
 		}
-		this.environment.pritn();
-		superLoop(P);
+		SuperLoop();
 	}
 
-	private void handleConfigRange() {
+	private void activationHandler() {
+		String m = this.getStringValue("a for activation d for deactivation");
+		if (m.equals("a")) {
+			while (true) {
+				try {
+					System.out.println("loc sensor");
+					String S = sc.nextLine();
+					String[] arrSplit = S.split(" ");
+					int point = Integer.parseInt(arrSplit[0]);
+					String SensorType = arrSplit[1];
+					activateSensor(point,SensorType);
+					return;
+				} catch (Exception e) {
+					System.out.println("please enter correct value");
+				}
+			}
+		}
+		else if (m.equals("d")) {
+			while (true) {
+				try {
+					System.out.println("loc sensor");
+					String S = sc.nextLine();
+					String[] arrSplit = S.split(" ");
+					int point = Integer.parseInt(arrSplit[0]);
+					String SensorType = arrSplit[1];
+					detivateSensor(point,SensorType);
+					return;
+				} catch (Exception e) {
+					System.out.println("please enter correct value");
+				}
+			}
+		}
+			
+	}
+
+	private void detivateSensor(int point, String sensorType) {
+		switch (sensorType) {
+		case "temp":
+			this.environment.deactivateTempSensor(point);
+			break;
+		case "light":
+			this.environment.deactivateLightSensor(point);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void activateSensor(int point, String sensorType) {
+		switch (sensorType) {
+		case "temp":
+			this.environment.activateTempSensor(point);
+			break;
+		case "light":
+			this.environment.activateLigrtSensor(point);
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	private void SuperLoop() {
+		
+		
+	}
+
+	private void sensorConfigHandler() {
+		String sensorType = this.getStringValue("enter Sensor type ");
+		switch (sensorType) {
+		case "temp":
+			initTempSensor();
+			break;
+		case "light":
+			initLightSensor();
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	private void initLightSensor() {
 		while (true) {
 			try {
-				System.out.println("Loc type min max");
+				System.out.println("point timeInterval radiometry, luminous minRadiometry minLuminous maxRadiometry maxLuminous");
 				String S = sc.nextLine();
-				String[] arrSplit_2 = S.split(" ");
-				int point = Integer.parseInt(arrSplit_2[0]);
-				float min = Float.parseFloat(arrSplit_2[2]);
-				float max = Float.parseFloat(arrSplit_2[3]);
-				String sensortype = arrSplit_2[1];
-				this.environment.setSensorsRange(point, sensortype, min, max);
+				String[] arrSplit = S.split(" ");
+				int point = Integer.parseInt(arrSplit[0]);
+				float radiometry = Float.parseFloat(arrSplit[1]);
+				float luminous = Float.parseFloat(arrSplit[2]);
+				int timeInterval = Integer.parseInt(arrSplit[3]);
+				float minRadiometry = Float.parseFloat(arrSplit[4]);
+				float minLuminous = Float.parseFloat(arrSplit[5]);
+				float maxRadiometry = Float.parseFloat(arrSplit[6]);
+				float maxLuminous = Float.parseFloat(arrSplit[7]);
+				LigthSensorMeasurementsDto m = new LigthSensorMeasurementsDto(radiometry,luminous,
+						minRadiometry,minLuminous,maxRadiometry,maxLuminous);
+				LightSensorDTO l = new LightSensorDTO(timeInterval,m);
+				this.environment.initSensor(point, l);/**/
 				return;
 			} catch (Exception e) {
+				System.out.println("please enter correct value" );
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	private void initTempSensor() {
+		while (true) {
+			try {
+				System.out.println("Loc value timeInterval min max");
+				String S = sc.nextLine();
+				String[] arrSplit = S.split(" ");
+				int point = Integer.parseInt(arrSplit[0]);
+				float value = Float.parseFloat(arrSplit[1]);
+				int timeInterval = Integer.parseInt(arrSplit[2]);
+				float min = Float.parseFloat(arrSplit[3]);
+				float max = Float.parseFloat(arrSplit[4]);
+				TempSensorDTO temp = new TempSensorDTO(value,timeInterval,min,max);
+				this.environment.initSensor(point,temp);
+				return;
+			} catch (Exception e) {
+				e.printStackTrace();
 				System.out.println("please enter correct value");
 			}
 		}
 	}
 
-	private void handleConfigSensor() {
-		while (true) {
-			try {
-				System.out.println("Loc type value");
-				String S = sc.nextLine();
-				String[] arrSplit_2 = S.split(" ");
-				int point = Integer.parseInt(arrSplit_2[0]);
-				float value = Float.parseFloat(arrSplit_2[2]);
-				String sensortype = arrSplit_2[1];
-				this.environment.setSensorsValue(point, sensortype, value);
-				return;
-			} catch (Exception e) {
-				System.out.println("please enter correct value");
-			}
-		}
-	}
-
-	private void handleActivate() {
-		// System.out.println("Loc");
-		int point = this.getIntValue("Loc");
-		this.environment.removesensorsfromLocation(point);
+	private void addLocationHandler() {
+		// System.out.println("please enter location with int value");
+		int point = getIntValue("please enter location with int value");
+		this.environment.addLocation(point);
 	}
 
 	private final int getIntValue(String printer) {
@@ -104,24 +202,6 @@ public class App {
 				sc.next();
 				System.out.println("please inter String value");
 			}
-		}
-	}
-
-	public void superLoop(int P) {
-		// Environment e = new Environment(); e.addSensorsToLocation(0);
-		// e.addSensorsToLocation(1); e.addSensorsToLocation(2);
-		ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(1);
-		Periodictask task = new Periodictask(this.environment);
-		executor.scheduleWithFixedDelay(task, P, P, TimeUnit.SECONDS);
-
-		while (true) {
-			String S = sc.nextLine();
-			if (S.equals("C"))
-				handleConfigRange();
-			else if (S.equals("N"))
-				this.environment.ReadValue();
-			else if (S.equals("D"))
-				handleActivate();
 		}
 	}
 
