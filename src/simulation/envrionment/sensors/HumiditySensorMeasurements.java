@@ -33,4 +33,14 @@ public class HumiditySensorMeasurements {
 			return SensorResults.LOW;
 		return SensorResults.Normal;
 	}
+	public String toString() {
+		StringBuilder S = new StringBuilder();
+		S.append("absHumidity=" + this.absHumidity);
+		S.append("\nrelHumidity=" + this.relHumidity);
+		S.append("\nminAbsHumidity=" + this.minAbsHumidity);
+		S.append("\nminRelHumidity=" + this.minRelHumidity);
+		S.append("\nmaxAbsHumidity" + this.maxAbsHumidity);
+		S.append("\nminAbsHumidity" + this.minAbsHumidity);
+		return S.toString();
+	}
 }

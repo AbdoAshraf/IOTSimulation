@@ -70,5 +70,7 @@ public abstract class Sensor extends Thread {
 		}
 		this.log(message.toString());
 	}
+	
+	
 
 }

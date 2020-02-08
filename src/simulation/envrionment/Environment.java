@@ -151,7 +151,26 @@ public class Environment {
 		Location loc = environment.get(point);
 		HumiditySensor s = loc.getHumiditySensor();
 		changeMeassageFormat(s, messageFormat);
-
 	}
+	
+	public void getLightSnsorInfo(int point) {
+		Location loc = environment.get(point);
+		Sensor S = loc.getLightSensor();
+		System.out.println(S.toString());
+	}
+	
+	public void getTempSnsorInfo(int point) {
+		Location loc = environment.get(point);
+		Sensor S = loc.getTempSensor();
+		System.out.println(S.toString());
+	}
+	
+	public void getHumiditySnsorInfo(int point) {
+		Location loc = environment.get(point);
+		Sensor S = loc.getHumiditySensor();
+		System.out.println(S.toString());
+	}
+	
+	
 
 }

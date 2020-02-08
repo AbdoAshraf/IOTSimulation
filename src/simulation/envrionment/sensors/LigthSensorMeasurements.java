@@ -33,4 +33,14 @@ public class LigthSensorMeasurements {
 			return SensorResults.LOW;
 		return SensorResults.Normal;
 	}
+	public String toString() {
+		StringBuilder S = new StringBuilder();
+		S.append("luminous=" + this.luminous);
+		S.append("\nradiometry=" + this.radiometry);
+		S.append("\nminLuminous=" + this.minLuminous);
+		S.append("\nminRadiometry=" + this.minRadiometry);
+		S.append("\nmaxLuminous" + this.maxLuminous);
+		S.append("\nmaxRadiometry" + this.maxRadiometry);
+		return S.toString();
+	}
 }

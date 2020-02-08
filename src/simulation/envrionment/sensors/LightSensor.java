@@ -49,4 +49,11 @@ public class LightSensor extends Sensor {
 		}
 		map.put("Light", light);
 	}
+	public String toString() {
+		StringBuilder S = new StringBuilder();
+		S.append(this.ligthSensorMeasurements.toString());
+		S.append("\nperiod=" + this.timeInterval);
+		return S.toString();
+	}
+	
 }

@@ -1,4 +1,5 @@
 package simulation.main;
+
 import java.util.Scanner;
 
 import simulation.envrionment.Environment;
@@ -24,7 +25,7 @@ public class App {
 		while (true) {
 			System.out.println("L for Add loc\n" + "S for add sensor\n" + "R for change range\n"
 					+ "A for activate deactivate\n" + "E for exit configuration\n" + "T for change time interval"
-					+"\nM for change message fomrmat");
+					+ "\nM for change message fomrmat" + "\nI for sensor info");
 			String S = sc.nextLine();
 			if (S.equals("L"))
 				addLocationHandler();
@@ -40,15 +41,45 @@ public class App {
 				sensorRangeHandler();
 			else if (S.equals("M"))
 				changemessageFormat();
+			else if (S.equals("I"))
+				sensorInfo();
 			else if (S.equals("E"))
 				break;
+		}
+	}
+
+	private void sensorInfo() {
+		while (true) {
+			try {
+				System.out.println("point sensor");
+				String S = sc.nextLine();
+				String[] arrSplit = S.split(" ");
+				int point = Integer.parseInt(arrSplit[0]);
+				String sensorType = arrSplit[1];
+				switch (sensorType) {
+				case "temp":
+					this.environment.getTempSnsorInfo(point);
+					break;
+				case "light":
+					this.environment.getLightSnsorInfo(point);
+					break;
+				case "hum":
+					this.environment.getHumiditySnsorInfo(point);
+				default:
+					break;
+				}
+				return;
+			} catch (Exception e) {
+				System.out.println("point sensor");
+				// e.printStackTrace();
+			}
 		}
 	}
 
 	private void changemessageFormat() {
 		while (true) {
 			try {
-				System.out.println("point sensor time");
+				System.out.println("point sensor (email sms)");
 				String S = sc.nextLine();
 				String[] arrSplit = S.split(" ");
 				int point = Integer.parseInt(arrSplit[0]);
@@ -56,14 +87,14 @@ public class App {
 				String messageFormat = arrSplit[2];
 				switch (sensorType) {
 				case "temp":
-					this.environment.changeTempSensorMessage(point,messageFormat);
+					this.environment.changeTempSensorMessage(point, messageFormat);
 					break;
 				case "light":
-					this.environment.changelightSensorMessage(point,messageFormat);					
+					this.environment.changelightSensorMessage(point, messageFormat);
 					break;
 				case "hum":
-					this.environment.changeHumiditySensorMessage(point,messageFormat);
-					default:
+					this.environment.changeHumiditySensorMessage(point, messageFormat);
+				default:
 					break;
 				}
 				return;
@@ -73,10 +104,11 @@ public class App {
 			}
 		}
 	}
+
 	private void changePeriodHandler() {
 		while (true) {
 			try {
-				//System.out.println("point sensor time");
+				// System.out.println("point sensor time");
 				String S = sc.nextLine();
 				String[] arrSplit = S.split(" ");
 				int point = Integer.parseInt(arrSplit[0]);
@@ -121,7 +153,7 @@ public class App {
 		} else if (m.equals("d")) {
 			while (true) {
 				try {
-					//System.out.println();
+					// System.out.println();
 					String S = sc.nextLine();
 					String[] arrSplit = S.split(" ");
 					int point = Integer.parseInt(arrSplit[0]);
@@ -169,7 +201,7 @@ public class App {
 	}
 
 	private void sensorConfigHandler() {
-		String sensorType = this.getStringValue("enter Sensor type ");
+		String sensorType = this.getStringValue("enter Sensor type (temp light hum)");
 		switch (sensorType) {
 		case "temp":
 			initTempSensor();
@@ -227,7 +259,7 @@ public class App {
 	private void changeRangeHumiditySensor() {
 		while (true) {
 			try {
-				System.out.println("minAbsHumidity" + "inRelHumidity " + "			maxAbsHumidity  maxRelHumidity");
+				System.out.println("point minAbsHumidity inRelHumidity maxAbsHumidity maxRelHumidity");
 				String S = sc.nextLine();
 				String[] arrSplit = S.split(" ");
 				int point = Integer.parseInt(arrSplit[0]);
@@ -248,7 +280,7 @@ public class App {
 	private void changeRangeTempSensor() {
 		while (true) {
 			try {
-				//System.out.println();
+				// System.out.println();
 				String S = sc.nextLine();
 				String[] arrSplit = S.split(" ");
 				int point = Integer.parseInt(arrSplit[0]);
@@ -266,8 +298,8 @@ public class App {
 	private void initHumiditySensor() {
 		while (true) {
 			try {
-				//System.out.println(
-						//);
+				// System.out.println(
+				// );
 				String S = sc.nextLine();
 				String[] arrSplit = S.split(" ");
 				int point = Integer.parseInt(arrSplit[0]);
@@ -285,8 +317,9 @@ public class App {
 				this.environment.initSensor(point, humiditySensorDTO);/**/
 				return;
 			} catch (Exception e) {
-				System.out.println("absHumidity relHumidity minAbsHumidity" + "minRelHumidity " + "maxAbsHumidity maxRelHumidity");
-				e.printStackTrace();
+				System.out.println(
+						"point absHumidity relHumidity time minAbsHumidity minRelHumidity  maxAbsHumidity maxRelHumidity");
+				// e.printStackTrace();
 			}
 		}
 
@@ -311,8 +344,9 @@ public class App {
 				this.environment.initSensor(point, l);/**/
 				return;
 			} catch (Exception e) {
-				System.out.println("point timeInterval radiometry, luminous minRadiometry minLuminous maxRadiometry maxLuminous");
-			//	e.printStackTrace();
+				System.out.println(
+						"point timeInterval radiometry, luminous minRadiometry minLuminous maxRadiometry maxLuminous");
+				// e.printStackTrace();
 			}
 		}
 
@@ -321,7 +355,7 @@ public class App {
 	private void initTempSensor() {
 		while (true) {
 			try {
-				//System.out.println();
+				// System.out.println();
 				String S = sc.nextLine();
 				String[] arrSplit = S.split(" ");
 				int point = Integer.parseInt(arrSplit[0]);
@@ -333,7 +367,7 @@ public class App {
 				this.environment.initSensor(point, temp);
 				return;
 			} catch (Exception e) {
-				//e.printStackTrace();
+				// e.printStackTrace();
 				System.out.println("Loc value timeInterval min max");
 			}
 		}
