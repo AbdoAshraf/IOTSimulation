@@ -1,4 +1,4 @@
-package simulation.envrionment.sensors;
+package simulation.envrionment;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -9,6 +9,10 @@ import lombok.Setter;
 import simulation.envrionment.dto.HumiditySensorDTO;
 import simulation.envrionment.dto.LightSensorDTO;
 import simulation.envrionment.dto.TempSensorDTO;
+import simulation.envrionment.sensors.HumiditySensor;
+import simulation.envrionment.sensors.LightSensor;
+import simulation.envrionment.sensors.SensorResults;
+import simulation.envrionment.sensors.TempSensor;
 
 @Getter
 @Setter
@@ -58,18 +62,20 @@ public class Location {
 		ModelMapper modelMapper = new ModelMapper();
 		this.tempSensor = modelMapper.map(tempSensor, TempSensor.class);
 		this.tempSensor.setMap(map);
-		StringBuilder name = new StringBuilder("temp Sensor at loc");
+		StringBuilder name = new StringBuilder("temp Sensor at");
 		name.append(this.name);
 		this.tempSensor.setName(name.toString());
+		this.tempSensor.start();
 	}
 
 	public void initSensor(LightSensorDTO lightSensorDTO) {
 		ModelMapper modelMapper = new ModelMapper();
 		this.lightSensor = modelMapper.map(lightSensorDTO, LightSensor.class);
 		this.lightSensor.setMap(map);
-		StringBuilder name = new StringBuilder("light Sensor at loc");
+		StringBuilder name = new StringBuilder("light Sensor at");
 		name.append(this.name);
-		this.tempSensor.setName(name.toString());
+		this.lightSensor.setName(name.toString());
+		this.lightSensor.start();
 	}
 	
 	
@@ -77,9 +83,10 @@ public class Location {
 		ModelMapper modelMapper = new ModelMapper();
 		this.humiditySensor= modelMapper.map(humiditySensorDTO, HumiditySensor.class);
 		this.humiditySensor.setMap(map);
-		StringBuilder name = new StringBuilder("humidity Sensor at loc");
+		StringBuilder name = new StringBuilder("humidity Sensor at");
 		name.append(this.name);
-		this.tempSensor.setName(name.toString());
+		this.humiditySensor.setName(name.toString());
+		this.humiditySensor.start();
 	}
 
 	@SuppressWarnings("deprecation")

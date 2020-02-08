@@ -4,6 +4,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.Getter;
 import lombok.Setter;
+import simulation.envrionment.sensors.LigthSensorMeasurements;
+import simulation.envrionment.sensors.Sensor;
+import simulation.envrionment.sensors.SensorResults;
 
 @Getter
 @Setter
@@ -40,7 +43,6 @@ public class LightSensor extends Sensor {
 		this.ligthSensorMeasurements.setLuminous(s.ligthSensorMeasurements.getMaxLuminous());
 		this.ligthSensorMeasurements.setMaxRadiometry(s.ligthSensorMeasurements.getMaxRadiometry());
 	}
-
 	@Override
 	void performReading() {
 		SensorResults light = this.ligthSensorMeasurements.measurements();

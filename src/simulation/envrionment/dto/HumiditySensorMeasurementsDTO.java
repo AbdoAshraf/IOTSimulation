@@ -14,6 +14,4 @@ public class HumiditySensorMeasurementsDTO {
 	private float minRelHumidity;
 	private float maxAbsHumidity;
 	private float maxRelHumidity;
-	 
-
 }

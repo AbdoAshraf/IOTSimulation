@@ -1,17 +1,19 @@
 package simulation.envrionment.sensors;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class HumiditySensorMeasurements {
-	float absHumidity;
-	float relHumidity;
-	float minAbsHumidity;
-	float minRelHumidity;
-	float maxAbsHumidity;
-	float maxRelHumidity;
+	private float absHumidity;
+	private float relHumidity;
+	private float minAbsHumidity;
+	private float minRelHumidity;
+	private float maxAbsHumidity;
+	private float maxRelHumidity;
 	
 	public HumiditySensorMeasurements(float absHumidity, float relHumidity, float minAbsHumidity, 
 			float minRelHumidity,

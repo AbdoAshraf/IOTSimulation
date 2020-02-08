@@ -31,3 +31,33 @@ abnormal temp
 Feb 07, 2020 6:02:58 PM simulation.envrionment.sensors.Sensor log
 INFO: temp Sensor at locloc0
 abnormal temp
+Feb 07, 2020 10:02:28 PM simulation.envrionment.sensors.Sensor log
+INFO: light Sensor at locloc0
+abnormal hight Light
+Feb 07, 2020 10:02:28 PM simulation.envrionment.sensors.Sensor log
+INFO: light Sensor at locloc0
+abnormal low Light
+Feb 07, 2020 10:02:35 PM simulation.envrionment.sensors.Sensor log
+INFO: temp Sensor at locloc0
+abnormal high temp
+Feb 07, 2020 10:02:45 PM simulation.envrionment.sensors.Sensor log
+INFO: temp Sensor at locloc0
+abnormal high temp
+Feb 07, 2020 10:02:55 PM simulation.envrionment.sensors.Sensor log
+INFO: temp Sensor at locloc0
+abnormal high temp
+Feb 07, 2020 10:03:05 PM simulation.envrionment.sensors.Sensor log
+INFO: temp Sensor at locloc0
+abnormal high temp
+Feb 07, 2020 10:03:15 PM simulation.envrionment.sensors.Sensor log
+INFO: temp Sensor at locloc0
+abnormal high temp
+Feb 07, 2020 10:03:25 PM simulation.envrionment.sensors.Sensor log
+INFO: temp Sensor at locloc0
+abnormal high temp
+Feb 07, 2020 10:03:35 PM simulation.envrionment.sensors.Sensor log
+INFO: temp Sensor at locloc0
+abnormal high temp
+Feb 07, 2020 10:03:45 PM simulation.envrionment.sensors.Sensor log
+INFO: temp Sensor at locloc0
+abnormal high temp
