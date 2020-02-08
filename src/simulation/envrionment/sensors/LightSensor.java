@@ -1,21 +1,59 @@
 package simulation.envrionment.sensors;
 
+import java.util.concurrent.ConcurrentHashMap;
+
+import lombok.Getter;
+import lombok.Setter;
+import simulation.envrionment.sensors.LigthSensorMeasurements;
+import simulation.envrionment.sensors.Sensor;
+import simulation.envrionment.sensors.SensorResults;
+
+@Getter
+@Setter
 public class LightSensor extends Sensor {
+	private LigthSensorMeasurements ligthSensorMeasurements;
 
 	public LightSensor() {
 		super();
 	}
 
-	public LightSensor(String type, float min, float max, float value) {
-		super(type, min, max, value);
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				this.performReading();
+				Thread.sleep(timeInterval * 1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public LightSensor(int timeInterval, ConcurrentHashMap<String, SensorResults> map,
+			LigthSensorMeasurements ligthSensorMeasurements) {
+		super(timeInterval, map);
+		this.ligthSensorMeasurements = ligthSensorMeasurements;
 	}
 
 	@Override
-	public void simulateAction() {
-		float low=max+10;
-		float hiegh=min-10;
-		float res = (float) (Math.random() * (hiegh - low)) + low;
-		this.setValue(res);
-	}
+	void performReading() {
+		SensorResults light = this.ligthSensorMeasurements.measurements();
+		if (light == SensorResults.HIGH) {
+			// System.out.println("abnormal temp");
+			this.creatMessage("abnormal hight Light");
+		}
+		if (light == SensorResults.HIGH) {
+			// System.out.println("abnormal Light");
+			this.creatMessage("abnormal low Light");
 
+		}
+		map.put("Light", light);
+	}
+	public String toString() {
+		StringBuilder S = new StringBuilder();
+		S.append(this.ligthSensorMeasurements.toString());
+		S.append("\nperiod=" + this.timeInterval);
+		return S.toString();
+	}
+	
 }

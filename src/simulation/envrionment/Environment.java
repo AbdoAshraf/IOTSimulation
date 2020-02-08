@@ -2,121 +2,175 @@ package simulation.envrionment;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import simulation.envrionment.sensors.LightSensor;
+
+import simulation.envrionment.dto.HumiditySensorDTO;
+import simulation.envrionment.dto.LightSensorDTO;
+import simulation.envrionment.dto.TempSensorDTO;
+import simulation.envrionment.sensors.HumiditySensor;
+import simulation.envrionment.sensors.HumiditySensorMeasurements;
+import simulation.envrionment.sensors.LigthSensorMeasurements;
+import simulation.envrionment.sensors.MessageType;
 import simulation.envrionment.sensors.Sensor;
+import simulation.envrionment.sensors.TempSensor;
+import simulation.envrionment.sensors.LightSensor;
 
 public class Environment {
-	Map<Integer, HashMap<String, Sensor>> environment;
+	Map<Integer, Location> environment;
 
 	public Environment() {
-		environment = new HashMap<Integer, HashMap<String, Sensor>>();
+		environment = new HashMap<Integer, Location>();
 	}
 
-	public void addSensorsToLocation(int point) {
-		Sensor light = new LightSensor("Light", 0, 0, 0);
-		Sensor temp = new LightSensor("Temp", 0, 0, 0);
-		Sensor Humidity = new LightSensor("Humidity", 0, 0, 0);
-		HashMap<String, Sensor> sensorsMap = new HashMap<String, Sensor>();
-		sensorsMap.putIfAbsent("Light", light);
-		sensorsMap.putIfAbsent("Temp", temp);
-		sensorsMap.putIfAbsent("Humidity", Humidity);
-		environment.putIfAbsent(point, sensorsMap);
+	public void addLocation(int point) {
+		String locName = "loc" + String.valueOf(point);
+		Location loc = new Location(locName);
+		environment.putIfAbsent(point, loc);
 	}
 
-	public void deactivateSensor(int point, String type, boolean value) {
-		HashMap<String, Sensor> sensorsMap = environment.get(point);
-		if (!sensorsMap.containsKey(type)) {
-			System.out.println("invalid input");
-			return;
+	public void initSensor(int point, TempSensorDTO tempSensor) {
+		Location loc = environment.get(point);
+		// TempSensor s = loc.getTempSensor();
+		loc.initSensor(tempSensor);
+		loc.activateTemptSensor();
+	}
+
+	public void initSensor(int point, LightSensorDTO lightSensorDTO) {
+		Location loc = environment.get(point);
+		// TempSensor s = loc.getTempSensor();
+		loc.initSensor(lightSensorDTO);
+	}
+
+	public void initSensor(int point, HumiditySensorDTO humiditySensorDTO) {
+		Location loc = environment.get(point);
+		// TempSensor s = loc.getTempSensor();
+		loc.initSensor(humiditySensorDTO);
+	}
+
+	public void activateLigrtSensor(int point) {
+		Location loc = environment.get(point);
+		loc.activateLightSensor();
+	}
+
+	public void activateTempSensor(int point) {
+		Location loc = environment.get(point);
+		loc.activateTemptSensor();
+	}
+
+	public void activateHumiditySensor(int point) {
+		Location loc = environment.get(point);
+		loc.activateHumiditySensor();
+	}
+
+	public void deactivateLightSensor(int point) {
+		Location loc = environment.get(point);
+		loc.deactivateLightSensor();
+	}
+
+	public void deactivateTempSensor(int point) {
+		Location loc = environment.get(point);
+		loc.deactivateTempSensor();
+	}
+
+	public void deactivateHumiditySensor(int point) {
+		Location loc = environment.get(point);
+		loc.deactivateHumiditySensor();
+	}
+
+	public void changetempSensorRang(int point, float min, float max) {
+		Location loc = environment.get(point);
+		TempSensor s = loc.getTempSensor();
+		s.setMin(min);
+		s.setMax(max);
+		// loc.adjustSensorRange(s);
+	}
+
+	public void changeLightSensorRang(int point, float minRadiometry, float minLuminous, float maxRadiometry,
+			float maxLuminous) {
+		Location loc = environment.get(point);
+		LightSensor s = loc.getLightSensor();
+		LigthSensorMeasurements m = s.getLigthSensorMeasurements();
+		m.setLuminous(minLuminous);
+		m.setMinRadiometry(minRadiometry);
+		m.setMaxLuminous(maxLuminous);
+		m.setMaxRadiometry(maxRadiometry);
+	}
+
+	public void changeHumiditytSensorRang(int point, float minAbsHumidity, float minRelHumidity, float maxAbsHumidity,
+			float maxRelHumidity) {
+		Location loc = environment.get(point);
+		HumiditySensor s = loc.getHumiditySensor();
+		HumiditySensorMeasurements m = s.getHumiditySensorMeasurements();
+		m.setMinAbsHumidity(minAbsHumidity);
+		m.setMinRelHumidity(minRelHumidity);
+		m.setMaxAbsHumidity(maxAbsHumidity);
+		m.setMaxRelHumidity(maxRelHumidity);
+	}
+
+	public void changeLightSensorPeriod(int point, int timeInterval) {
+		Location loc = environment.get(point);
+		LightSensor s = loc.getLightSensor();
+		s.setTimeInterval(timeInterval);
+	}
+
+	public void changeTempSensorPeriod(int point, int timeInterval) {
+		Location loc = environment.get(point);
+		TempSensor s = loc.getTempSensor();
+		s.setTimeInterval(timeInterval);
+	}
+
+	public void changeHumiditySensorPeriod(int point, int timeInterval) {
+		Location loc = environment.get(point);
+		HumiditySensor s = loc.getHumiditySensor();
+		s.setTimeInterval(timeInterval);
+	}
+
+	public void changeTempSensorMessage(int point, String messageFormat) {
+		Location loc = environment.get(point);
+		TempSensor s = loc.getTempSensor();
+		changeMeassageFormat(s, messageFormat);
+	}
+
+	private void changeMeassageFormat(Sensor s, String messageFormat) {
+		switch (messageFormat) {
+		case "sms":
+			s.setMessageType(MessageType.SMS);
+			break;
+		case "email":
+			s.setMessageType(MessageType.EMAIL);
+			break;
 		}
-		Sensor s = sensorsMap.get(type);
-		s.setActive(value);
 	}
 
-	public void removesensorsfromLocation(int point) {
-		for (Entry<Integer, HashMap<String, Sensor>> entry : environment.entrySet()) {
-			for (Entry<String, Sensor> subentry : entry.getValue().entrySet()) {
-				subentry.getValue().setActive(false);
-			}
-		}
+	public void changelightSensorMessage(int point, String messageFormat) {
+		Location loc = environment.get(point);
+		LightSensor s = loc.getLightSensor();
+		changeMeassageFormat(s, messageFormat);
 	}
 
-	public void setSensorsValue(int point, String sensortype, float val) {
-		addSensorsToLocation(point);
-		HashMap<String, Sensor> sensorsMap = environment.get(point);
-		Sensor s = sensorsMap.get(sensortype);
-		s.setValue(val);
+	public void changeHumiditySensorMessage(int point, String messageFormat) {
+		Location loc = environment.get(point);
+		HumiditySensor s = loc.getHumiditySensor();
+		changeMeassageFormat(s, messageFormat);
 	}
-
-	public float getSensorsValue(int point, String sensortype) {
-		HashMap<String, Sensor> sensorsMap = environment.get(point);
-		Sensor s = sensorsMap.get(sensortype);
-		return s.getValue();
+	
+	public void getLightSnsorInfo(int point) {
+		Location loc = environment.get(point);
+		Sensor S = loc.getLightSensor();
+		System.out.println(S.toString());
 	}
-
-	public void setSensorsRange(int point, String sensortype, float from, float to) {
-		HashMap<String, Sensor> sensorsMap = environment.get(point);
-		Sensor s = sensorsMap.get(sensortype);
-		s.changeRange(from, to);
+	
+	public void getTempSnsorInfo(int point) {
+		Location loc = environment.get(point);
+		Sensor S = loc.getTempSensor();
+		System.out.println(S.toString());
 	}
-
-	private String sensorFusion(int point) {
-		StringBuilder message = new StringBuilder("normal");
-		HashMap<String, Sensor> sensorsMap = environment.get(point);
-		Sensor Light = sensorsMap.get("Light");
-		Sensor temp = sensorsMap.get("Temp");
-		Sensor Humidity = sensorsMap.get("Humidity");
-
-		if (Light.getMax() < Light.getValue() && temp.getMax() > temp.getValue()) {
-			message = new StringBuilder("abnormal temp");
-			temp.sendMessage("abnormal temp");
-		}
-		if (Humidity.getMax() < Humidity.getValue() && temp.getMax() > temp.getValue()) {
-			message.append("\nabnormal humidity");
-			Humidity.sendMessage("\nabnormal humidity");
-		}
-
-		if (Light.getMax() < Light.getValue()) {
-			message.append("\nabnormal Light");
-			Light.sendMessage("\nabnormal Light");
-
-		}
-
-		if (Light.getMin() < Light.getValue() || temp.getMin() < temp.getValue()
-				|| Humidity.getMin() < Humidity.getValue()) {
-			message.append("\nabnormal case");
-			Light.sendMessage("abnormal case");
-		}
-		return message.toString();
+	
+	public void getHumiditySnsorInfo(int point) {
+		Location loc = environment.get(point);
+		Sensor S = loc.getHumiditySensor();
+		System.out.println(S.toString());
 	}
-
-	public void ReadValue() {
-		for (Entry<Integer, HashMap<String, Sensor>> entry : environment.entrySet()) {
-			int point = entry.getKey();
-			HashMap<String, Sensor> sensorsMap = environment.get(point);
-			Sensor Light = sensorsMap.get("Light");
-			Sensor temp = sensorsMap.get("Temp");
-			Sensor Humidity = sensorsMap.get("Humidity");
-			if (Light.isActive())
-				Light.simulateAction();
-			if (temp.isActive())
-				temp.simulateAction();
-			if (Humidity.isActive())
-				Humidity.simulateAction();
-			// System.out.println("point: "+point+" "+(sensorFusion(point))+);
-			sensorFusion(point);
-		}
-	}
-
-	public void pritn() {
-		for (Entry<Integer, HashMap<String, Sensor>> entry : environment.entrySet()) {
-			System.out.println(entry.getKey());
-			for (Entry<String, Sensor> subentry : entry.getValue().entrySet()) {
-				System.out.println(subentry.getKey() + subentry.getValue());
-			}
-		}
-
-	}
+	
+	
 
 }
