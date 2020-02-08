@@ -71,7 +71,7 @@ public class TempSensor extends Sensor {
 		}
 		map.put("Temp", temp);
 	}
-	
+
 	public String toString() {
 		StringBuilder S = new StringBuilder();
 		S.append("value=" + this.min);

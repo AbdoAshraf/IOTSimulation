@@ -33,6 +33,7 @@ public class HumiditySensorMeasurements {
 			return SensorResults.LOW;
 		return SensorResults.Normal;
 	}
+
 	public String toString() {
 		StringBuilder S = new StringBuilder();
 		S.append("absHumidity=" + this.absHumidity);

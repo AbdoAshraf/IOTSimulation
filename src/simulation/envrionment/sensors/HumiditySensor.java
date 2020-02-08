@@ -47,6 +47,7 @@ public class HumiditySensor extends Sensor {
 		}
 		map.put("Light", hum);
 	}
+
 	public String toString() {
 		StringBuilder S = new StringBuilder();
 		S.append(this.humiditySensorMeasurements.toString());
