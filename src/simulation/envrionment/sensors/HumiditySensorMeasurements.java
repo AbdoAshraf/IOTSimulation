@@ -14,9 +14,8 @@ public class HumiditySensorMeasurements {
 	private float minRelHumidity;
 	private float maxAbsHumidity;
 	private float maxRelHumidity;
-	
-	public HumiditySensorMeasurements(float absHumidity, float relHumidity, float minAbsHumidity, 
-			float minRelHumidity,
+
+	public HumiditySensorMeasurements(float absHumidity, float relHumidity, float minAbsHumidity, float minRelHumidity,
 			float maxAbsHumidity, float maxRelHumidity) {
 		super();
 		this.absHumidity = absHumidity;
@@ -35,6 +34,3 @@ public class HumiditySensorMeasurements {
 		return SensorResults.Normal;
 	}
 }
-
-
-

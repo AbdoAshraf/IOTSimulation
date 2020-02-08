@@ -32,32 +32,6 @@ public class Location {
 		this.name = name;
 	}
 
-	/*
-	 * public void initLightSensor(int timeInterval, float radiometry, float
-	 * luminous, float minRadiometry, float minLuminous, float maxRadiometry, float
-	 * maxLuminous) { if (this.lightSensor == null) { // this.lightSensor = new
-	 * LightSensor(value,map,timeInterval,min,max); LigthSensorMeasurements m = new
-	 * LigthSensorMeasurements(radiometry, luminous, minRadiometry, minLuminous,
-	 * maxRadiometry, maxLuminous); this.lightSensor = new LightSensor(timeInterval,
-	 * map, m); return; } //System.out.println("Already Activated"); }
-	 * 
-	 * public void initHumiditySensor(float value, int timeInterval, int min, int
-	 * max) { if (this.humiditySensor.getState() == Thread.State.TERMINATED ||
-	 * this.humiditySensor == null) { // this.humiditySensor = new
-	 * HumiditySensor(timeInterval, map, value, min, max); return; }
-	 * System.out.println("Already Activated"); }
-	 * 
-	 * public void initTempSensor(float value, int timeInterval, float min, float
-	 * max) { if (this.tempSensor == null) { this.tempSensor = new
-	 * TempSensor(timeInterval, map, value, min, max); return; }
-	 * System.out.println("Already Activated"); }
-	 * 
-	 * public void initLightSensor(LightSensorDTO lightSensroDTO) {
-	 * 
-	 * }
-	 * 
-	 * /
-	 **/
 	public void initSensor(TempSensorDTO tempSensor) {
 		ModelMapper modelMapper = new ModelMapper();
 		this.tempSensor = modelMapper.map(tempSensor, TempSensor.class);
@@ -77,11 +51,10 @@ public class Location {
 		this.lightSensor.setName(name.toString());
 		this.lightSensor.start();
 	}
-	
-	
+
 	public void initSensor(HumiditySensorDTO humiditySensorDTO) {
 		ModelMapper modelMapper = new ModelMapper();
-		this.humiditySensor= modelMapper.map(humiditySensorDTO, HumiditySensor.class);
+		this.humiditySensor = modelMapper.map(humiditySensorDTO, HumiditySensor.class);
 		this.humiditySensor.setMap(map);
 		StringBuilder name = new StringBuilder("humidity Sensor at");
 		name.append(this.name);
@@ -139,7 +112,7 @@ public class Location {
 			System.out.println("invalid operation " + e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void activateHumiditySensor() {
 		try {
@@ -151,31 +124,4 @@ public class Location {
 			System.out.println("invalid operation " + e.getMessage());
 		}
 	}
-	
-	
-	/*
-	 * public void adjustSensor(Sensor S, int i) { S.setTimeInterval(i); }
-	 * 
-	 * public void adjustLightSensor(float radiometry, float luminous) {
-	 * this.lightSensor.adjust(radiometry, luminous); }
-	 * 
-	 * public void adjustSensorRange(LightSensor s) {
-	 * this.lightSensor.adjustRange(s); }
-	 * 
-	 * public void adjustSensorRange(TempSensor s) { this.tempSensor.adjustRange(s);
-	 * 
-	 * }
-	 * 
-	 * public void changeTimeInterval(LightSensor s, int time) {
-	 * this.lightSensor.setTimeInterval(time); }
-	 * 
-	 * public void changeTimeInterval(TempSensor s, int time) {
-	 * this.tempSensor.setTimeInterval(time); }
-	 * 
-	 * public void changemessageFormat(LightSensor s) {
-	 * this.lightSensor.setMessageFormat(s.getMessageFormat()); } public void
-	 * changemessageFormat(TempSensor s) {
-	 * this.tempSensor.setMessageFormat(s.getMessageFormat()); }/
-	 **/
-
 }
