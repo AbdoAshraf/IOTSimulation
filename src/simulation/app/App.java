@@ -29,7 +29,7 @@ public class App {
 		while (true) {
 			System.out.println("L for Add loc\n" + "S for add sensor\n" + "R for change range\n"
 					+ "A for activate deactivate\n" + "E for exit configuration\n" + "T for change time interval"
-					+ "\nM for change message fomrmat" + "\nI for sensor info");
+					+ "\nM for change message fomrmat" + "\nI for sensor info" + "\nC for change environment state");
 			String S = sc.nextLine();
 			if (S.equals("L"))
 				addLocationHandler();
@@ -64,7 +64,7 @@ public class App {
 				return;
 			} catch (Exception e) {
 				System.out.println("please enter correct value");
-				e.printStackTrace();
+				//
 			}
 		}
 	}
@@ -283,7 +283,7 @@ public class App {
 				this.locationControl.addLocation(point, varibles);
 				return;
 			} catch (Exception e) {
-				e.printStackTrace();
+				//
 				System.out.println("Loc fileName status");
 			}
 		}
@@ -375,7 +375,7 @@ public class App {
 				return;
 			} catch (Exception e) {
 				System.out.println("please enter correct value");
-				e.printStackTrace();
+				//
 			}
 		}
 	}
