@@ -260,7 +260,7 @@ public class App {
 				this.locationControl.initSensor(point, temp);
 				return;
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("Loc timeInterval min max");
 			}
 		}
