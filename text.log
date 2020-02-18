@@ -1,186 +1,87 @@
-Feb 08, 2020 10:24:53 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:25:02 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:25:03 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:25:12 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:25:13 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:25:22 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:25:23 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:25:32 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:25:33 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:25:42 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:25:43 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:25:52 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:25:53 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:25:59 AM simulation.envrionment.sensors.Sensor log
-INFO: senderlight Sensor atloc0
-abnormal hight Light
-Feb 08, 2020 10:25:59 AM simulation.envrionment.sensors.Sensor log
-INFO: senderlight Sensor atloc0
-abnormal low Light
-Feb 08, 2020 10:26:02 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:26:03 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:26:12 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:26:13 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:26:19 AM simulation.envrionment.sensors.Sensor log
-INFO: senderlight Sensor atloc0
-abnormal hight Light
-Feb 08, 2020 10:26:19 AM simulation.envrionment.sensors.Sensor log
-INFO: senderlight Sensor atloc0
-abnormal low Light
-Feb 08, 2020 10:26:22 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:26:23 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:28:39 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:28:46 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:28:49 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:28:56 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:28:59 AM simulation.envrionment.sensors.Sensor log
-INFO: senderlight Sensor atloc0
-abnormal hight Light
-Feb 08, 2020 10:28:59 AM simulation.envrionment.sensors.Sensor log
-INFO: senderlight Sensor atloc0
-abnormal low Light
-Feb 08, 2020 10:28:59 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:29:06 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:29:09 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:29:16 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:29:19 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:29:26 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:29:29 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:29:36 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:29:39 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:29:46 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:29:49 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:29:56 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:29:59 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:30:06 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:30:09 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:30:16 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:30:19 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:30:26 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:30:29 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:30:36 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:30:39 AM simulation.envrionment.sensors.Sensor log
-INFO: senderlight Sensor atloc0
-abnormal hight Light
-Feb 08, 2020 10:30:39 AM simulation.envrionment.sensors.Sensor log
-INFO: senderlight Sensor atloc0
-abnormal low Light
-Feb 08, 2020 10:30:39 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:30:46 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:30:49 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:30:56 AM simulation.envrionment.sensors.Sensor log
-INFO: sendertemp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:30:59 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:31:06 AM simulation.envrionment.sensors.Sensor log
-INFO: title: sensor alarm
-temp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:31:09 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:31:16 AM simulation.envrionment.sensors.Sensor log
-INFO: title: sensor alarm
-temp Sensor atloc0
-abnormal high temp
-Feb 08, 2020 10:31:19 AM simulation.envrionment.sensors.Sensor log
-INFO: senderhumidity Sensor atloc0
-abnormal hight Humidity
-Feb 08, 2020 10:31:26 AM simulation.envrionment.sensors.Sensor log
-INFO: title: sensor alarm
-temp Sensor atloc0
-abnormal high temp
+Feb 18, 2020 11:24:49 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:24:54 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:24:59 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:15 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:18 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:25 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:28 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:35 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:38 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:45 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:48 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:55 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:49:58 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:05 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:08 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:15 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:18 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:25 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:28 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:35 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:38 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:45 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:48 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:56 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:50:58 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:51:06 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:51:08 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:51:16 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
+Feb 18, 2020 11:51:18 AM simulation.sensor_control.control.Actuator log
+INFO: senderloc0
+low light
